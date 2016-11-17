@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Availability List</h1>
+      <form class="" role="search" method='GET'>
+        <div class="form-group">
+          <input name="search" type="text" class="form-control" placeholder="Search for an availability">
+        </div>
+      </form>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Floor</th>
+          <th>Unit</th>
+          <th>Status</th>
+          <th>Area</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody data-link="row">
+        {% for availability in availabilities.items %}
+        <tr>
+          <th>{{availability.Floor}}</th>
+          <th>{{availability.Unit}}</th>
+          <th>{{availability.Status}}</th>
+          <th>{{availability.Area}}</th>
+          <th class="fit"><a class="btn btn-default" href="/dashboard/availability/edit/{{availability.Id}}" role="button">Edit</a></th>
+          <th class="fit"><form action="{{url_for('delete_availability', iden=availability.Id)}}" method="POST"><button class="btn btn-default" type="submit">Delete</a></form></th>
+        </tr>
+        {% endfor %}  
+      </tbody>
+    </table>
+    {% from "/util/_pagination.html" import render_pagination %}
+    {{render_pagination(availabilities, keyword)}}
+  </div>
+  <script>
+  $(document).ready(function() {
+    $('#viewAvailability').addClass('active');
+  });
+  </script>
+{% endblock %}

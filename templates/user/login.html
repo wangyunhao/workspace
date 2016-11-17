@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style> 
+        *{font-family:"微软雅黑";}
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <title>Login</title>
+
+ <!--   <script src="/bundles/modernizr?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>-->
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/login2.css" rel="stylesheet" />
+</head>
+<body>  
+    
+<!--
+
+
+    <div class="container" >
+ 
+      <form class="form-signin" method='POST' name='login'>
+        <div align="center"><img src="/static/img/logo_YP.jpg" width="150" height="150"/>
+        </div>
+        <h2 class="form-signin-heading" align="center"><font face="黑体"><b>杨浦商业载体信息平台</b></font></h2>
+		  <!--	<div>
+        	<p class="centered-text">欢迎登陆
+      	</p>
+        </div>
+      -->
+  <!--     <input type="image" src="/static/img/icon_user.png" width="24" height="20" style="visibility:inline"><input id="username" class="form-control" placeholder="请输入用户名" required="" autofocus="" type="username" name="username">
+        </p>
+        <input type="image" src="/static/img/icon_password.png" width="24" height="20" style="visibility:inline"><input id="password" class="form-control" placeholder="请输入密码" required="" type="password" name="password">
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><font face="黑体">登&nbsp;陆</font></button>
+        <div>
+        	<p class="centered-text"><font face="黑体">尚未拥有用户名? </font>
+      		<a href="/register"><font face="黑体"> 点击进行注册</font></a>
+      	</p>
+      	<br>
+      
+        </div>
+      </form>
+      
+      	     <div align="center">
+      	   <font size="1">DEMO PRESENTED BY JLL GDIM</font></br>
+      	     <img src="/static/img/logo_JLL.bmp" width="68" height="30.5" align="center" />
+      	  </div>  
+      <div id="mapContainer" style="overflow: hidden; height: 638px; line-height: 628px;">
+        <img width="100%" src="/static/img/bg_map.png" class="map" align="center">
+    </div>
+  
+    </div> <!-- /container -->
+
+
+
+    <form method='POST' name='login'>
+        {% csrf_token %}
+        <div class="centered">
+            <div style="margin: auto 30px">
+                <h2 class="form-signin-heading" align="center" ><font color="#FFFFFF" size="6">杨浦商务载体管理平台</font></h2>
+                <!--span>杨浦商务载体管理平台</span-->
+            
+                <div>
+
+                    <!--div class="btn-group btn-group-sm dmsel" role="group" aria-label="Small button group">
+                        <button id="btnAP" style="border-color:#353c44; background-color: #C8132F; color:#fff;height:26px;line-height:16px;" onclick="changeBackground(this.id)" type="button" class="btn btn-default">AP</button>
+                        <button id="btnAM" style="border-color:#353c44;height: 26px; line-height: 16px;" onclick="changeBackground(this.id)" type="button" class="btn btn-default">AM</button>
+                        <button id="btnEU" style="border-color:#353c44;height: 26px; line-height: 16px;" onclick="changeBackground(this.id)" type="button" class="btn btn-default">EU</button>
+                    </div-->
+
+                    <!--div id="diverror" style="color:red;visibility:none;">Invalid UserName / Password</div-->
+                    <!--input name="DOMAIN" id="hdnDomain" type="hidden" value="ap" /-->
+                    <div style="padding:7px 0px 15px 0px;font-size:14px;">
+       
+                        <div style="margin: 0px 0px 5px 0px;">欢迎登陆！   
+                        {% if input_is_wrong %}  
+                            <a style="color: red;">  
+                               {{errors}}
+                             </a>  
+                        {% endif %}  
+                        {% if password_is_wrong %}  
+                            <a style="color: red;">  
+                               {{errors}}
+                             </a>  
+                        {% endif %}  
+                        </div>  
+
+                        <div style="margin: 0px 0px 5px 0px">用户名</div>
+                        <input id="username" class="inpttxt" placeholder="请输入用户名 " required="" autofocus="" type="username" name="username"/>
+                        <div style="margin:10px 0px 5px 0px;">密码</div>
+                        <input id="password" class="inpttxt" placeholder="请输入密码" required="" type="password" name="password"/>
+                    </div>
+                    <div style="padding:10px 0px 5px 0px;">
+                        <button class="myButton buttonclass" type="submit">登&nbsp;&nbsp;&nbsp;陆</button>
+                    </div>
+    
+                    <div class="lnks">
+                            <a href="/findmypassword">忘记密码？找回我的密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="/register">点击进行注册</a>
+                    </div>
+                        <!--span style="padding:0px 7px; opacity:.5;" >|</span-->
+                        <!--a class="bottomlinks" href='https://apps.joneslanglasalle.com/home/pubs/useradmin/pwdhelp.aspx?Lang=en-US' target='popup' onclick="window.open('https://apps.joneslanglasalle.com/home/pubs/useradmin/pwdhelp.aspx?Lang=en-US', 'JLL Password Service: Password Help', 'width=550,height=575');return false;"> Trouble logging in? </a-->
+
+         <!--           <div class="disc">
+                        <span style="visibility:block; font-size:11px;">Disclaimer</span>
+
+                    </div>-->
+                </div>
+                
+                <div class="logo" align="center" >
+                    <img width="300" src="/static/img/jll_techzone4.png" />
+                </div>
+                
+                <div style="font-size: 8px;color:#868686;text-align:center; padding-top:20px;">
+                    &#169; 2016 Jones Lang LaSalle. All rights reserved.
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div id="lightbox"></div>
+    </form>
+    <script type="text/javascript">
+
+        if ('' == 'invalid') {
+            document.getElementById("btnhdpopup").focus();
+            document.getElementById("txtuser").value = '';
+        }
+
+        function showDisclaimer(e) {
+            document.getElementById("disclaimerpopup").style.visibility = "visible";
+            document.getElementById("lightbox").style.visibility = "visible";
+        }
+
+        function hidepopup() {
+            document.getElementById("divStartupPopup").style.visibility = "none";
+            document.getElementById("startupoverlay").style.visibility = "none";
+            document.getElementById("txtpwd").focus();
+        }
+
+        var errormsg = '';
+
+        if (errormsg == "not exists in tz") {
+            document.getElementById("ancu1").href = 'mailto:bharath.kumar@ap.jll.com?cc=jasonhl.tan@ap.jll.com&Subject=Reg: Please add me to techZone';
+            document.getElementById("ancu2").href = 'mailto:jasonhl.tan@ap.jll.com?cc=bharath.kumar@ap.jll.com&Subject=Reg: Please add me to techZone';
+        }
+
+        function myTrim(x) {
+            return x.replace(/^\s+|\s+$/gm, '');
+        }
+
+        function validateUnamepwd() {
+            if (myTrim(document.getElementById("txtuser").value) == "" || myTrim(document.getElementById("txtpwd").value) == "") {
+                document.getElementById("diverror").innerHTML = "请输入用户名";
+                document.getElementById("diverror").style.visibility = "visible";
+                return false;
+            }
+            else {
+                document.getElementById("diverror").innerHTML = "";
+                document.getElementById("diverror").style.visibility = "visible";
+                return true;
+            }
+        }
+
+        /*function changeBackground(id) {
+            if (id == "btnAM") {
+                document.getElementById("btnAM").style.backgroundColor = "#C8132F";
+                document.getElementById("btnAM").style.color = "#fff";
+                document.getElementById("btnEU").style.backgroundColor = "#fff";
+                document.getElementById("btnEU").style.color = "rgb(51, 51, 51)";
+                document.getElementById("btnAP").style.backgroundColor = "#fff";
+                document.getElementById("btnAP").style.color = "rgb(51, 51, 51)";
+                document.getElementById("hdnDomain").value = "am";
+            }
+            else if (id == "btnEU") {
+                document.getElementById("btnEU").style.backgroundColor = "#C8132F";
+                document.getElementById("btnEU").style.color = "#fff";
+                document.getElementById("btnAM").style.backgroundColor = "#fff";
+                document.getElementById("btnAM").style.color = "rgb(51, 51, 51)";
+                document.getElementById("btnAP").style.backgroundColor = "#fff";
+                document.getElementById("btnAP").style.color = "rgb(51, 51, 51)";
+                document.getElementById("hdnDomain").value = "eu";
+            }
+            else if (id == "btnAP") {
+                document.getElementById("btnAP").style.backgroundColor = "#C8132F";
+                document.getElementById("btnAP").style.color = "#fff";
+                document.getElementById("btnAM").style.backgroundColor = "#fff";
+                document.getElementById("btnAM").style.color = "rgb(51, 51, 51)";
+                document.getElementById("btnEU").style.backgroundColor = "#fff";
+                document.getElementById("btnEU").style.color = "rgb(51, 51, 51)";
+                document.getElementById("hdnDomain").value = "ap";
+            }
+            return false;
+        }*/
+    </script>
+</body>
+</html>

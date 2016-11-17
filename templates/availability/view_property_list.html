@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">可招商单元 {% if mode == 'view' %}列表{% else %}输入{% endif %}</h1>
+      <form class="" role="search" method='GET'>
+        <div class="form-group">
+          <input name="search" type="text" class="form-control" placeholder="查找载体">
+        </div>
+      </form>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>载体名称</th>
+          <th>中文名称</th>
+          <th>地址</th>
+          <th>单元</th>
+          <th>详情</th>
+        </tr>
+      </thead>
+      <tbody data-link="row">
+        {% for property in properties.items %}
+        <tr>
+          <th>{{property.Name}}</th>
+          <th>{{property.NameUnicode}}</th>
+          <th>{{property.AddressLine1}}</th>
+          <th class="fit">单元存量：{{property.Availability.all()|length}}</th>
+          <th class="fit"><a class="btn btn-default" href="{{mode}}/{{property.Id}}" role="button">{% if mode == 'view' %}查看{% else %}添加{% endif %}</a></th>
+        </tr>
+        {% endfor %}  
+      </tbody>
+    </table>
+    {% from "/util/_pagination.html" import render_pagination %}
+    {{render_pagination(properties, keyword)}}
+  </div>
+  <script>
+  $(document).ready(function() {
+    $('#{{mode}}Availability').addClass('active');
+  });
+  </script>
+{% endblock %}

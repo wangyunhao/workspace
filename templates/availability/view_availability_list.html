@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">可招商单元列表 </h1>
+      <form class="" role="search" method='GET'>
+        <div class="form-group">
+          <input name="search" type="text" class="form-control" placeholder="查找招商单元">
+        </div>
+      </form>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>楼层</th>
+          <th>单位</th>
+          <th>状态</th>
+          <th>面积</th>
+          <th>编辑</th>
+          <th>删除</th>
+        </tr>
+      </thead>
+      <tbody data-link="row">
+        {% for availability in availabilities.items %}
+        <tr>
+          <th>{{availability.Floor}}</th>
+          <th>{{availability.Unit}}</th>
+          <th>{{availability.Status}}</th>
+          <th>{{availability.Area}}</th>
+          <th class="fit"><a class="btn btn-default" href="/dashboard/availability/edit/{{availability.Id}}" role="button">编辑</a></th>
+          <th class="fit"><form action="{{url_for('delete_availability', iden=availability.Id)}}" method="POST"><button class="btn btn-default" type="submit">删除</a></form></th>
+        </tr>
+        {% endfor %}  
+      </tbody>
+    </table>
+    {% from "/util/_pagination.html" import render_pagination %}
+    {{render_pagination(availabilities, keyword)}}
+    
+  	<div id="allmap" style="width: 800px; height:400px;"></div>  
+
+
+  </div>
+  
+  <script type="text/javascript">
+//添加延时加载。解决问题
+setTimeout(function() {
+    var map = new BMap.Map("allmap");
+
+	// 百度地图API功能
+	map.centerAndZoom(new BMap.Point(121.5377630000, 31.2752860000), 15);
+
+	var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});// 添加比例尺
+//	var top_left_navigation = new BMap.NavigationControl(); 
+    var mapType1 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_RIGHT, mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]});
+	var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_ZOOM});
+	var overView = new BMap.OverviewMapControl();
+	var overViewOpen = new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT});
+	/*缩放控件type有四种类型:
+	BMAP_NAVIGATION_CONTROL_SMALL：仅包含平移和缩放按钮；BMAP_NAVIGATION_CONTROL_PAN:仅包含平移按钮；BMAP_NAVIGATION_CONTROL_ZOOM：仅包含缩放按钮*/
+	
+	//添加控件和比例尺
+    map.addControl(top_left_control);  
+    map.addControl(mapType1);          //2D图，卫星图
+	map.addControl(mapType2);          //左上角，默认地图控件
+	map.setCurrentCity("上海");
+	map.addControl(top_right_navigation); 
+	map.addControl(overView);          //添加默认缩略地图控件
+	map.addControl(overViewOpen);  
+
+
+
+},1000);
+
+
+</script>
+  <script>
+  $(document).ready(function() {
+    $('#viewAvailability').addClass('active');
+  });
+  </script>
+{% endblock %}

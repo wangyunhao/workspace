@@ -1,0 +1,36 @@
+{% macro render_pagination(pagination, search) %}
+<div class="text-right">
+  <ul class="pagination">
+  <li>
+    <a href="{% if search %}?search={{search}}{% endif %}&page={% if pagination.has_prev %}{{pagination.prev_num}}{% else %}1{% endif %}" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+    </a>
+  </li>
+
+    {% for p in pagination.iter_pages(left_edge=1, left_current=2, right_current=3, right_edge=1) %}
+      {% if p %}
+        {% if p != pagination.page %}
+          <li>
+            <a href="?{% if search %}search={{search}}&{% endif %}page={{p}}">{{ p }}</a>
+          </li>
+        {% else %}
+          <li class="active">
+            <a href="?{% if search %}search={{search}}&{% endif %}page={{p}}">{{ p }}</a>
+          </li>
+        {% endif %}
+      {% else %}
+        <li class="disabled">
+          <span class="ellipsis">&hellip;</span>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+  <li>
+    <a href="{% if search %}?search={{search}}{% endif %}&page={% if pagination.has_next %}{{pagination.next_num}}{% else %}{{pagination.page}}{% endif %}" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+    </a>
+  </li>
+
+  </ul>
+</div>
+{% endmacro %}

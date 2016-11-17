@@ -1,0 +1,130 @@
+<head>
+    <style> 
+*{font-family:"微软雅黑";}
+</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    
+    <title>Dashboard</title>
+    
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" >
+  
+    
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5dEsfUlwMV0GdHlxoqgvlxE0"></script>  
+</head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><font face="微软雅黑"><b>杨浦商业载体信息平台</b></font></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><font face="微软雅黑">控制面板</font></a></li>
+            <li><a href="#"><font face="微软雅黑">设置</font></a></li>
+            <li><a href="#"><font face="微软雅黑">个人信息</font></a></li>
+            <li><a href="/logout"><font face="微软雅黑">退出登录</font></a></li>
+            <li><a href="#"><img src="/static/img/logo_JLL_v2.bmp" width="41" height="18" align="right"/></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" style='position:fixed;'>
+          <ul id="sidebar" class="nav nav-sidebar list-group" >
+            <h4 class="list-group-item"  data-parent="#sidebar">
+      			  <div><font size = "5" face="微软雅黑"><b>
+      				功能列表
+      				</b></font>
+      			  </div>
+      			</h4>
+      			<h4 class="list-group-item"  data-parent="#sidebar"><font face="微软雅黑"><b>
+      				商业载体
+      	
+      			</h4>
+      			<div class="list-group subitem">	
+      				<a id="addProperty" href="/dashboard/property/add" class="list-group-item">
+      					添加载体
+      				</a>
+      				<a id="viewProperty" href="/dashboard/property/view" class="list-group-item">
+      					查询载体
+      				</a>
+      			</div>	
+      			<h4 class="list-group-item"  data-parent="#sidebar"><font face="微软雅黑"><b>
+      				可招商单元
+      				</b></font>
+      			</h4>
+      			<div class="list-group subitem">	
+      				<a id="addAvailability" href="/dashboard/availability/add" class="list-group-item">
+      					添加单元
+      				</a>
+      				<a id="viewAvailability" href="/dashboard/availability/view" class="list-group-item">
+      					查询单元
+      				</a>
+      			</div>
+      			<h4 class="list-group-item"  data-parent="#sidebar"><font face="微软雅黑"><b>
+      				入驻租户
+      				</b></font>
+      			</h4>
+      			<div class="list-group subitem">	
+      				<a id="addTenant" href="/dashboard/tenant/add" class="list-group-item">
+      					添加租户
+      				</a>
+      				<a id="viewTenant" href="/dashboard/tenant/view" class="list-group-item">
+      					查询租户
+      				</a>
+      			</div>
+      			<h4 class="list-group-item"  data-parent="#sidebar"><font face="微软雅黑"><b>
+      				客户信息
+      				</b></font>
+      			</h4>
+      			<div class="list-group subitem">	
+      				<a id="addClient" href="/dashboard/client/add" class="list-group-item">
+      					添加客户
+      				</a>
+      				<a id="viewClient" href="/dashboard/client/view" class="list-group-item">
+      					查询客户
+      				</a>
+      			</div>
+      			<h4 class="list-group-item"  data-parent="#sidebar"><font face="微软雅黑"><b>
+      				招商项目
+      				</b></font>
+      			</h4>
+      			<div class="list-group subitem">	
+      				<a id="addTransactionHistory" href="/dashboard/transactionhistory/add" class="list-group-item">
+      					添加项目
+      				</a>
+      				<a id="viewTransactionHistory" href="/dashboard/transactionhistory/view" class="list-group-item">
+      					查询项目
+      				</a>
+      			</div>
+      			<h4 class="list-group-item"  data-parent="#sidebar"><font face="微软雅黑"><b>
+      				考察记录
+      				</b></font>
+      			</h4>
+      			<div class="list-group subitem">	
+      				<a id="addActivityHistory" href="/dashboard/activityhistory/add" class="list-group-item">
+      					添加记录
+      				</a>
+      				<a id="viewActivityHistory" href="/dashboard/activityhistory/view" class="list-group-item">
+      					查询记录
+      				</a>
+      			</div>
+          </ul>
+        </div>
+      {% block content %}     
+            
+    {% endblock %}
+      </div>
+    </div>
+
+	</body>
